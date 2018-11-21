@@ -17,7 +17,7 @@ public interface CommentMapper {
     @Select("select * from comment where bookId=#{bookId} and userId = #{userId}")
     public Comment userCommentInBook(Comment comment);
 
-    @Insert("INSERT INTO reply (commentId,fromUserId,toUserId,detail,datetime) VALUES(#{commentId},#{fromUserId},#{toUserId},#{detail},#{datetime})")
+    @Insert("INSERT INTO reply (commentId,fromUserId,toUserId,detail,datetime,toReplyId) VALUES(#{commentId},#{fromUserId},#{toUserId},#{detail},#{datetime},#{toReplyId})")
     public void insertReply(reply reply);
 
     @Insert("INSERT INTO replySupport (userId,replyId) VALUES(#{userId},#{replyId})")

@@ -43,6 +43,8 @@ import java.util.List;
 @Service
 public class LoginServiceImp implements LoginService {
 
+    private final Integer COOKIE_USER_NUMBER = 10;
+
     private String registerMessage;
 //@Autowired
 //UserService userService;
@@ -166,11 +168,11 @@ public class LoginServiceImp implements LoginService {
             }
 
 //            如果cookie中没有用户信息，则需要保存用户信息
-            if (b == false && list.size() == 10) {
-                for (int i = 0; i < 9; i++) {
+            if (b == false && list.size() == COOKIE_USER_NUMBER) {
+                for (int i = 0; i < (COOKIE_USER_NUMBER-1); i++) {
                     list.set(i, list.get(i + 1));
                 }
-                list.set(9, user);
+                list.set((COOKIE_USER_NUMBER-1), user);
             } else if (b == false) list.add(user);
         }
 

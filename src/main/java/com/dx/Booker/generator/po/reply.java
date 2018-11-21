@@ -14,6 +14,15 @@ public class reply {
     private Integer support;
     private Integer currentUserIsSupport;
     private String showDateTime;
+    private Integer toReplyId;
+
+    public Integer getToReplyId() {
+        return toReplyId;
+    }
+
+    public void setToReplyId(Integer toReplyId) {
+        this.toReplyId = toReplyId;
+    }
 
     public String getShowDateTime() {
         return showDateTime;

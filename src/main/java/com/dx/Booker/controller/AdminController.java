@@ -98,7 +98,6 @@ public class AdminController {
         List<Integer> tagIds = allTags.getTagIds();
         adminService.handleHotTag(tagIds,httpSession);
         return "redirect:/admin/handleTagsPage";
-
     }
 
     @RequestMapping("/addTags")

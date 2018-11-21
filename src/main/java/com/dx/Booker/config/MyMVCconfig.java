@@ -12,14 +12,17 @@ public class MyMVCconfig implements WebMvcConfigurer {
     @Bean
     public WebMvcConfigurer webMvcConfigurer() {
         WebMvcConfigurer webMvcConfigurer = new WebMvcConfigurer() {
+
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
+
 
                 }
 
         };
         return webMvcConfigurer;
     }
+
 
 
 

@@ -28,6 +28,9 @@ import java.util.UUID;
  */
 @Service
 public class AdminServiceImp implements AdminService {
+    //存储图片的物理地址
+    private final String pic_path = "/opt/tomcat/bookImage/";
+
     @Autowired
     private BooksMapper booksMapper;
     @Autowired
@@ -49,8 +52,8 @@ public class AdminServiceImp implements AdminService {
      *
      */
     public void addBook(addBook addBook, MultipartFile image) {
-        //存储图片的物理地址
-        String pic_path = "/opt/tomcat/bookImage/";
+
+
         //原始名称
         String originalFilename = image.getOriginalFilename();
         //新的文件名
@@ -62,17 +65,16 @@ public class AdminServiceImp implements AdminService {
             image.transferTo(file);
         } catch (IOException e) {
             e.printStackTrace();
-            e.printStackTrace();
         }
         //将新图片的名称写入book中
         addBook.setImagepath("/bookImage/" + newfilename);
         List<String> bookTags = addBook.getBookTags();
-        String tags = "";
+        StringBuilder tags = new StringBuilder("");
         for (String tag : bookTags
                 ) {
-            tags = tags + "/" + tag;
+            tags = tags .append("/").append(tag);
         }
-        addBook.setTags(tags);
+        addBook.setTags(tags.toString());
         Date date = new Date();
         addBook.setPutaway(date);
         booksMapper.addBook(addBook);

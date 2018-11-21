@@ -161,6 +161,9 @@
                             <button class="btn btn-danger deleteComment" th:commentUserId="${commentAndSupport.userId}"  th:commentId="${commentAndSupport.id}" th:if="${session.user.role=='admin'}">删除评论</button>
                             <button class="btn btn-light replyComment" th:commentUserId="${commentAndSupport.userId}"  th:commentId="${commentAndSupport.id}">评论</button>
 
+
+
+
                             <button th:index="${commentAndSupportStat.index}" class="btn btn-light support" th:commentId="${commentAndSupport.id}"
                                     th:disabled="${commentAndSupport.ifUserSupport==true}?'true':'false'"
                                     th:class="${commentAndSupport.ifUserSupport==true}?'btn btn-danger support':'btn btn-light support'">
@@ -173,8 +176,6 @@
                         <div class="replies"  style="clear: both" th:id="collapseExample+${commentAndSupportStat.index}">
                             <div style="width: 500px" th:each="reply,replyStat:${commentAndSupport.replies}">
                                  <!--th:each="i : ${#numbers.sequence(0,1)}"-->
-
-
                                 <h6 class="mb-1"><span ><a style="color: black" th:href="@{#}" ><span data-feather="user">
                                 </span>[[${reply.fromUserName}]]</a><span th:if="${reply.fromUserId==commentAndSupport.getUserId()}">(评论者)</span>-></span><a style="color: black" th:href="@{#}" ><span data-feather="user">
                                 </span>[[${reply.toUserName}]]</a><span  th:if="${reply.toUserId==commentAndSupport.getUserId()}">(评论者)</span></h6>
@@ -194,7 +195,7 @@
                                 <div class="collapse" th:id="collapseExample+${reply.id}">
 
                                         <textarea th:id="repltMessageDetail+${reply.id}"   placeholder="回复信息" style="resize:none;height: 100px;float: left" class="form-control"name="detail"  aria-label="With textarea" required></textarea>
-                                        <input th:id="replyMessageFromUserId+${reply.id}"+ type="hidden" th:value="${reply.fromUserId}" name="fromUserId">
+                                        <input th:id="replyMessageFromUserId+${reply.id}" type="hidden" th:value="${reply.fromUserId}" name="fromUserId">
                                         <input th:id="replyMessageCommentId+${reply.id}" type="hidden" th:value="${commentAndSupport.getId()}" name="commentId">
                                         <button th:replyId="${reply.id}"  class="replyMessageButton btn btn-sm btn-light" style="margin-left: 450px" type="submit">提交</button>
 
@@ -269,6 +270,7 @@
                 type: 'POST', //
                 async: true,    //或false,是否异步
                 data: {
+                    toReplyId:replyId,
                    detail:detail,
                     toUserId:fromUserId,
                     commentId:commentId,
