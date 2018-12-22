@@ -16,7 +16,6 @@ public class MyMVCconfig implements WebMvcConfigurer {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
 
-
                 }
 
         };
